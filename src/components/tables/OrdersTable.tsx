@@ -9,7 +9,7 @@ function OrdersTable() {
 
   //funcion para consumir api
   const showInvoices = async () => {
-    const data = await fetch(URL + "/api/invoice/getInvoice/");
+    const data = await fetch(URL + "/api/invoice/getInvoice");
     const data_json = await data.json();
     const mapped = data_json.map((order: any) => {
       let date = new Date(Date.parse(order.Fecha));
