@@ -17,7 +17,7 @@ Antes de continuar, asegúrate de tener instalado:
 1. Clona este repositorio en tu máquina local:
 
 ```bash
-git clone https://github.com/tu-usuario/tu-repositorio.git
+git clone https://github.com/UpDavo/ar-holdings-react-app.git
 ```
 
 2. Accede al directorio del proyecto:
