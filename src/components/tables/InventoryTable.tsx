@@ -2,14 +2,23 @@ import { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import MiniImageIventory from "../common/MiniImageInventory";
 
-const URL = "http://127.0.0.1:8000";
+const URL = "https://ar-holdings-api.herokuapp.com";
 
 function InventoryTable() {
   const [products, setProducts] = useState([]);
 
   //funcion para consumir api
   const showProducts = async () => {
-    const data = await fetch(URL + "/api/products/getProducts");
+    const api_headers = new Headers();
+    api_headers.append(
+      "Authorization",
+      "Token 9cbd25610f74eb64a5501db6fe0da24c12f6a182"
+    );
+    const data = await fetch(URL + "/api/products/getProducts", {
+      method: "GET",
+      headers: api_headers,
+      redirect: "follow",
+    });
     const data_json = await data.json();
     const mapped = data_json.map((product: any) => {
       let date = new Date(Date.parse(product.UltimaFechaActualizacion));

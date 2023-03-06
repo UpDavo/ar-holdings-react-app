@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import MiniImageIventory from "../common/MiniImageInventory";
 
-const URL = "http://127.0.0.1:8000";
+const URL = "https://ar-holdings-api.herokuapp.com";
 
 function OrdersDetailsTable(props: any) {
   const [products, setProducts] = useState([]);
@@ -10,8 +10,14 @@ function OrdersDetailsTable(props: any) {
 
   //funcion para consumir api
   const showProducts = async () => {
+    const api_headers = new Headers();
+    api_headers.append(
+      "Authorization",
+      "Token 9cbd25610f74eb64a5501db6fe0da24c12f6a182"
+    );
     const data = await fetch(
-      URL + "/api/invoice/getInvoice/" + props.search_id
+      URL + "/api/invoice/getInvoice/" + props.search_id,
+      { method: "GET", headers: api_headers, redirect: "follow" }
     );
     const data_json = await data.json();
     const mapped = data_json[0].detalle.map((product: any) => {

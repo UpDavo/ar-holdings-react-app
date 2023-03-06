@@ -2,14 +2,23 @@ import { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import RelocatedOrdersButton from "../common/RelocateOrdersButton";
 
-const URL = "http://127.0.0.1:8000";
+const URL = "https://ar-holdings-api.herokuapp.com";
 
 function OrdersTable() {
   const [orders, setOrders] = useState([]);
 
   //funcion para consumir api
   const showInvoices = async () => {
-    const data = await fetch(URL + "/api/invoice/getInvoice");
+    const api_headers = new Headers();
+    api_headers.append(
+      "Authorization",
+      "Token 9cbd25610f74eb64a5501db6fe0da24c12f6a182"
+    );
+    const data = await fetch(URL + "/api/invoice/getInvoice", {
+      method: "GET",
+      headers: api_headers,
+      redirect: "follow",
+    });
     const data_json = await data.json();
     const mapped = data_json.map((order: any) => {
       let date = new Date(Date.parse(order.Fecha));
