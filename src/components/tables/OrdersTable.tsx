@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
+import { ProgressComponent } from "../common/Progress";
 import RelocatedOrdersButton from "../common/RelocateOrdersButton";
 
 const URL = "https://ar-holdings-api.herokuapp.com";
 
 function OrdersTable() {
+  const [pending, setPending] = useState(true);
   const [orders, setOrders] = useState([]);
 
   //funcion para consumir api
@@ -32,6 +34,7 @@ function OrdersTable() {
     });
     // console.log(mapped);
     setOrders(mapped);
+    setPending(false);
   };
 
   useEffect(() => {
@@ -80,6 +83,8 @@ function OrdersTable() {
         <DataTable
           columns={columns}
           data={orders}
+          progressPending={pending}
+          progressComponent={<ProgressComponent/>}
           pagination
           paginationComponentOptions={paginationOptions}
         />

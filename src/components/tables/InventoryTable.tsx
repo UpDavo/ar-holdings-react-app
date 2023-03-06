@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import MiniImageIventory from "../common/MiniImageInventory";
+import { ProgressComponent } from "../common/Progress";
+
 
 const URL = "https://ar-holdings-api.herokuapp.com";
 
 function InventoryTable() {
+  const [pending, setPending] = useState(true);
   const [products, setProducts] = useState([]);
 
   //funcion para consumir api
@@ -31,6 +34,7 @@ function InventoryTable() {
       };
     });
     setProducts(mapped);
+    setPending(false);
   };
 
   useEffect(() => {
@@ -79,6 +83,8 @@ function InventoryTable() {
         <DataTable
           columns={columns}
           data={products}
+          progressPending={pending}
+          progressComponent={<ProgressComponent/>}
           pagination
           paginationComponentOptions={paginationOptions}
         />

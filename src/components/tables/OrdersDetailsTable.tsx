@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import MiniImageIventory from "../common/MiniImageInventory";
+import { ProgressComponent } from "../common/Progress";
 
 const URL = "https://ar-holdings-api.herokuapp.com";
 
 function OrdersDetailsTable(props: any) {
+  const [pending, setPending] = useState(true);
   const [products, setProducts] = useState([]);
   const [total, setTotal] = useState(0);
 
@@ -30,6 +32,7 @@ function OrdersDetailsTable(props: any) {
     });
     setProducts(mapped);
     setTotal(data_json[0].Total);
+    setPending(false);
   };
 
   useEffect(() => {
@@ -64,7 +67,12 @@ function OrdersDetailsTable(props: any) {
   return (
     <div>
       <div className="mt-6">
-        <DataTable columns={columns} data={products} />
+        <DataTable
+          columns={columns}
+          data={products}
+          progressPending={pending}
+          progressComponent={<ProgressComponent />}
+        />
       </div>
     </div>
   );
