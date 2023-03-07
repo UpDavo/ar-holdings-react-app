@@ -3,7 +3,6 @@ import DataTable from "react-data-table-component";
 import MiniImageIventory from "../common/MiniImageInventory";
 import { ProgressComponent } from "../common/Progress";
 
-
 const URL = "https://ar-holdings-api.herokuapp.com";
 
 function InventoryTable() {
@@ -83,8 +82,9 @@ function InventoryTable() {
         <DataTable
           columns={columns}
           data={products}
+          paginationRowsPerPageOptions={[2, 4, 8, 12, 15]}
           progressPending={pending}
-          progressComponent={<ProgressComponent/>}
+          progressComponent={<ProgressComponent />}
           pagination
           paginationComponentOptions={paginationOptions}
         />

@@ -5,8 +5,7 @@ import InventoryTable from "../tables/InventoryTable";
 function Inventory() {
   return (
     <React.Fragment>
-      <GeneralHeader title="Catálogo de Artículos" />
-
+      <GeneralHeader title="Catálogo de Artículos" button={true} />
       <section className="grid grid-cols-1 mt-8 gap-8 z-0">
         <div className="rounded-xl bg-white p-5">
           <InventoryTable />

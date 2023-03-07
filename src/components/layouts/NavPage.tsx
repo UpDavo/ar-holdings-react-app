@@ -7,15 +7,15 @@ import Orders from "../views/Orders";
 function NavPage() {
   return (
     <React.Fragment>
-      <main className="lg:col-span-3 xl:col-span-5">
-        <div className="bg-primary h-[7%]">
+      <main className="lg:col-span-3 xl:col-span-5 h-screen overflow-y-auto">
+        {/* <div className="bg-primary h-[7%]">
           <div className="flex justify-end items-center">
             <div className="lg:mr-3 lg:mt-3 mt-3">
               <h1 className="text-white font-bold">Nombre de usuario</h1>
             </div>
             <div className="invisible lg:visible bg-white h-10 w-10 rounded-full mr-4 mt-2"></div>
           </div>
-        </div>
+        </div> */}
         <div className="p-6 md:p-10">
           <Routes>
             <Route path="/orders" element={<Orders />} />
